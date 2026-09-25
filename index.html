@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="dev">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2077.cloud</title>
+    <style>
+        body { background-color: #000; color: #00ff00; font-family: 'Courier New', Courier, monospace; padding: 15px; margin: 0; }
+        
+        .tree { line-height: 1.4; margin-bottom: 20px; font-size: 0.9rem; }
+        .tree ul { list-style-type: none; position: relative; padding-left: 15px; }
+        .tree ul ul::before { content: ""; position: absolute; top: 0; left: 5px; border-left: 1px solid #00ff00; height: 100%; }
+        .tree li { position: relative; margin: 0; padding: 0 12px; }
+        .tree li::before { content: "├── "; color: #00ff00; }
+        .tree li:last-child::before { content: "└── "; }
+
+        .content-box { 
+            border: 1px solid #00ff00; width: 100%; max-width: 600px; height: 120px; 
+            overflow-y: auto; padding: 10px; box-sizing: border-box; 
+            background: rgba(0, 255, 0, 0.05); margin-bottom: 10px; font-size: 0.85rem;
+        }
+        
+        .red-box-list { border-color: #ff0000; color: #ff0000; background: rgba(255, 0, 0, 0.05); }
+
+        .red-box-status { 
+            border: 1px solid #ff0000; color: #ff0000; background: rgba(255, 0, 0, 0.05); 
+            height: auto; min-height: 40px; margin-top: 15px; padding: 10px; box-sizing: border-box;
+            max-width: 600px; transition: all 0.3s ease;
+        }
+        .red-box-status::after { content: "_"; animation: blink 1s step-end infinite; }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        .terminal-container {
+            display: flex; flex-direction: column; gap: 10px; max-width: 600px;
+            border: 1px solid #00ff00; padding: 10px; background: #000; box-sizing: border-box;
+        }
+
+        .input-line { display: flex; align-items: center; gap: 5px; width: 100%; }
+        input {
+            background: transparent; border: none; color: #00ff00;
+            font-family: 'Courier New', Courier, monospace; outline: none;
+            font-size: 1rem; padding: 2px 0;
+        }
+
+        #subdomain { width: 45px; text-align: right; border-bottom: 1px solid #004400; }
+        #domain { flex-grow: 1; border-bottom: 1px dashed #004400; min-width: 100px; }
+        #path { flex-grow: 1; border-bottom: 1px solid #004400; }
+
+        .btn-terminal {
+            background: #00ff00; color: #000; border: none; cursor: pointer;
+            font-weight: bold; padding: 5px 12px; font-size: 0.8rem;
+        }
+        .btn-terminal:disabled { background: #004400; color: #006600; cursor: not-allowed; }
+
+        .dropdown-wrapper { position: relative; }
+        #url-dropdown {
+            position: absolute; bottom: 35px; right: 0; background: #000;
+            border: 1px solid #00ff00; list-style: none; padding: 0; margin: 0;
+            display: none; width: 180px; z-index: 100; max-height: 200px; overflow-y: auto;
+        }
+        #url-dropdown li { padding: 10px; cursor: pointer; border-bottom: 1px solid #003300; font-size: 0.8rem; color: #00ff00; }
+        #url-dropdown li:hover { background: #00ff00; color: #000; }
+    </style>
+</head>
+<body>
+
+    <div class="tree">
+        <ul>
+            <li>upsilon.dev
+                <ul>
+                    <li>upsilon.media</li>
+                    <li>upsilon.zip</li>
+                    <li>1337.nexus
+                        <ul>
+                            <li>1337.army</li>
+                            <li>1337.vision</li>
+                            <li>1337.укр</li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div id="approved-list" class="content-box">
+        [Wednesday, May 6, 2026]
+Migration of the entire network to 2077.cloud⟳
+     <br><br> 
+
+        [ACTIVE DOMAINS]<br>
+
+        upsilon.dev<br>
+        upsilon.media<br>
+        upsilon.zip<br>
+        1337.nexus<br>
+        1337.army<br>1337.vision<br>
+        1337.укр
+
+        <br><br>[BETA]<br>app.upsilon.dev<br>apk.upsilon.zip<br>
+    </div>
+
+    <div class="content-box red-box-list">
+        [ABORTED / EXPIRED / OFFLINE]<br>
+        1337nex.us<br>
+        xco.re<br>
+        versus.tv<br>1337.coffee<br>v7.software<br>mant.is<br>mantis.is<br>risit.as<br>jeuxvideo.com.mx<br>cyb.org.mx<br>cyb.org.ai<br>cyborgs.center<br>
+        kraken.email<br>playstation.gift<br>playstation.gifts<br>playstation.link<br>playstation.blue<br>playstation.code<br>playstation.codes<br>versus.ps<br>
+        mega.army<br>mega.it.com<br>omega.it.com<br>greenup.network<br>socom.community<br>central.station.ps<br>
+        socom.online<br>yaroze.net<br>yaroze.network<br>🎱🎱🎱.ws<br>i♥️1337.ws<br>
+        yourgamingna.me<br>yourgaming.name<br>metalgearsol.id<br>codec.id<br>sprite.id<br>sprite.exchange<br>zone51.biz<br>xxxxxxxxxxxxxxxxxxxxxxxx.xxx<br>ooooooooooooooooooooooo.ooo<br>
+        menya.zovut.ink<br>zovut.vodka<br>vodka.tools<br>rampag.es<br>gta.money<br>vercetti.club<br>vercetti.casino<br>megalodon.digital<br>megalodon.club<br>megalodon.vc<br>
+        megalodon.group<br>megalodon.army<br>libu.club<br>v-army.club<br>tpi.world<br>ratpi.world<br>🎻orchestra.ws<br>r8media.fr<br>uncenso.red<br>mafia.red<br>uncensoraid.network<br>rosnet.app<br>ros.network<br>ros.nexus<br>emi.name<br>emina.me<br>telephone.red<br>red.tel<br>
+        nazi.network<br>wanted.id<br>vice.c<br>vice.monsters<br>vice.diamonds<br>vice.pink<br>vice.blue<br>1337.ai<br>1337na.forum<br>kremlin.gay<br>
+        wanted.center<br>bigshell.id<br>bigshell.channel<br>bigshell.group<br>1337.it.com<br>
+        <br>kim.com.ss<br>47.agency<br>drebin.shop<br>drebin.store<br>
+                    
+    </div>
+
+    <div class="terminal-container">
+        <div class="input-line">
+            <span style="color:#888">https://</span>
+            <input type="text" id="subdomain" placeholder="www" autocomplete="off">
+            <span>.</span>
+            <input type="text" id="domain" placeholder="domain.ext" autocomplete="off">
+        </div>
+        <div class="input-line">
+            <span>/</span>
+            <input type="text" id="path" placeholder="path" autocomplete="off">
+            <div style="display:flex; gap:5px;">
+                <div class="dropdown-wrapper">
+                    <button class="btn-terminal" onclick="toggleDropdown()">LIST</button>
+                    <ul id="url-dropdown"></ul>
+                </div>
+                <button class="btn-terminal" id="run-btn" onclick="launchURL()">RUN</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="error-display" class="red-box-status">SYSTEM READY</div>
+
+    <script>
+        const errorBox = document.getElementById('error-display');
+        const approvedBox = document.getElementById('approved-list');
+        const dropdown = document.getElementById('url-dropdown');
+        const runBtn = document.getElementById('run-btn');
+
+        function getApprovedDomains() {
+            const rawText = approvedBox.innerText;
+            const regex = /([a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,}/gi;
+            const matches = rawText.match(regex) || [];
+            return matches.map(d => d.toLowerCase().trim());
+        }
+
+        function populateDropdown() {
+            const domains = getApprovedDomains();
+            dropdown.innerHTML = "";
+            domains.forEach(d => {
+                let li = document.createElement('li');
+                li.textContent = d;
+                li.onclick = () => {
+                    const cleanD = d.replace('www.', '');
+                    document.getElementById('domain').value = cleanD;
+                    document.getElementById('subdomain').value = d.startsWith('www.') ? "www" : "";
+                    dropdown.style.display = "none";
+                };
+                dropdown.appendChild(li);
+            });
+        }
+
+        function toggleDropdown() {
+            populateDropdown();
+            dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+        }
+
+        function showError(msg) {
+            errorBox.textContent = msg;
+            errorBox.style.borderColor = "#ff0000";
+            errorBox.style.color = "#ff0000";
+        }
+
+        function launchURL() {
+            
+            let sub = document.getElementById('subdomain').value.replace(/\s+/g, '').toLowerCase();
+            let dom = document.getElementById('domain').value.replace(/\s+/g, '').toLowerCase();
+            let path = document.getElementById('path').value.trim();
+            
+            if (!dom) { showError("NO DOMAIN ENTERED"); return; }
+
+            const approvedList = getApprovedDomains();
+            const fullInput = sub ? (sub + "." + dom) : dom;
+
+            
+            const isBaseValid = approvedList.includes(dom);
+            const isFullValid = approvedList.includes(fullInput);
+
+            if (!isBaseValid && !isFullValid) {
+                showError("DOMAIN NOT AUTHORIZED");
+                return;
+            }
+
+            runBtn.disabled = true;
+            errorBox.style.color = "#00ff00";
+            errorBox.style.borderColor = "#00ff00";
+            errorBox.textContent = "ESTABLISHING ENCRYPTED LINK...";
+
+            
+            let finalURL = "https://" + fullInput;
+            if (path) {
+                finalURL += (path.startsWith('/') ? "" : "/") + path;
+            }
+            
+            console.log("Target URL: " + finalURL); // Debug F12
+
+            setTimeout(() => {
+                const userChoice = confirm("PROCEED TO TARGET?\n" + finalURL);
+                
+                if (userChoice) {
+                    errorBox.textContent = "REDIRECTING...";
+                    
+                    window.location.href = finalURL;
+                } else {
+                    runBtn.disabled = false;
+                    errorBox.textContent = "ABORTED.";
+                    setTimeout(() => { errorBox.textContent = "SYSTEM READY"; }, 2000);
+                }
+            }, 3000);
+        }
+
+        document.addEventListener('keydown', (e) => { 
+            if (e.key === 'Enter' && !runBtn.disabled) {
+                launchURL();
+            }
+        });
+
+        window.onclick = (e) => { 
+            if (!e.target.matches('.btn-terminal')) dropdown.style.display = "none";
+        };
+    </script>
+</body>
+</html>
